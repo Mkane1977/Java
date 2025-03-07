@@ -8,6 +8,7 @@ public record Run (
         String title,
         LocalDateTime startedOn,
         LocalDateTime finishedOn,
+        Integer miles,
         Location location
 )
 

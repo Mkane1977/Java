@@ -8,22 +8,29 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @SpringBootApplication
-public class Application {
+public class Application
+{
 
-	private static final Logger logger = LoggerFactory.getLogger(Application.class);
-	public static void main(String[] args) {
+	private static final Logger log = LoggerFactory.getLogger(Application.class);
+
+
+	public static void main(String[] args)
+	{
 		SpringApplication.run(Application.class, args);
+
 	}
 
 	@Bean
-	CommandLineRunner runner(){
+	CommandLineRunner runner()
+	{
+		return args ->
+		{
+			Run run = new Run( 1,  "Morning Run", LocalDateTime.now(),  LocalDateTime.now().plus(1, ChronoUnit.HOURS),4 , Location.OUTDOOR);
+			log.info("Run: " + run);
 
-
-
-		return args -> {
-			Run run = new Run( 1,  "Morning Run", LocalDateTime.now(),  LocalDateTime.now().plusHours(1),  Location.OUTDOOR);
 		};
 	}
 }
